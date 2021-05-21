@@ -7,6 +7,7 @@
 #include <stdexcept> // domain error 사용
 #include "median.h"
 #include "Student_info.h"
+#include "grade.h"
 
 using std::cin; using std::sort;
 using std::cout; using std::string;
@@ -14,19 +15,6 @@ using std::endl; using std::streamsize; // 입출력 라이브러리에서 전�
 using std::setprecision; using std::vector;
 using std::domain_error; using std::istream;
 using std::max;
-
-
-double grade(double midterm, double final, const vector<double>&hw){
-    if(hw.size() == 0)
-        throw domain_error("student has done no homework");
-
-    return 0.2 * midterm + 0.4 * final + 0.4 * median(hw);
-}
-
-double grade(const Student_info& s){ // 오버로딩
-    return grade(s.midterm, s.final, s.homework);
-}
-
 
 int main(){
     vector<Student_info> students;
