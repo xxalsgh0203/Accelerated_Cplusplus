@@ -2,6 +2,7 @@
 #include "median.h"
 
 using std::vector;
+using std::list;
 using std::domain_error;
 
 double grade(double midterm, double final, const vector<double>&hw){
@@ -21,16 +22,17 @@ bool fgrade(const Student_info& s){
 }
 
 // 기준 점수를 통과한 학생과 통과하지 못한 학생의 정보를 분류
-vector<Student_info> extract_fails(vector<Student_info>& students){
-    vector<Student_info> pass, fail;
-
-    for(vector<Student_info>::size_type i=0; i!=students.size(); i++){
-        if(fgrade(students[i]))
-            fail.push_back(students[i]);
+list<Student_info> extract_fails(list<Student_info>& students){
+    
+    list<Student_info> fail;
+    list<Student_info>::iterator iter = students.begin();
+    while(iter!=students.end()){
+        if(fgrade(*iter)){
+            fail.push_back(*iter);
+            iter = students.erase(iter);
+        }
         else
-            pass.push_back(students[i]);
+            ++iter;
     }
-
-    students = pass;
     return fail;
 }
