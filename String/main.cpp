@@ -4,6 +4,7 @@
 #include <cctype> // isspace 함수
 #include "split.h"
 #include "frame.h"
+#include "combine.h"
 
 using std::vector;
 using std::cin;
