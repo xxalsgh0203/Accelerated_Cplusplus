@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cctype> // isspace 함수
 #include "split.h"
+#include "frame.h"
 
 using std::vector;
 using std::cin;
@@ -18,9 +19,9 @@ int main(){
     while(getline(cin, s)){
         vector<string> v = split(s);
 
-        // 벡터 v에 저장한 단어를 각각 출력
-        for(vector<string>::size_type i=0; i!=v.size(); i++){
-            cout << v[i] << endl;
+        vector<string> result = frame(v);
+        for(vector<string>::size_type i=0; i<result.size(); i++){
+            cout << result[i] << endl;
         }
     }
 
