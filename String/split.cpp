@@ -1,33 +1,34 @@
 #include "split.h"
-
+#include <algorithm> // find_if
 using std::vector;
 using std::string;
 
-vector<string> split(const string& s){
+bool space(char c){
+    return isspace(c);
+}
+
+bool not_space(char c){
+    return !isspace(c);
+}
+
+vector<string> split(const string& str){
+    typedef string::const_iterator iter;
     vector<string> ret;
-    typedef string::size_type string_size;
-    string_size i=0;
+    iter i = str.begin();
 
-    //불변성 : 지금까지 [원래의 i, 현재의 i) 범위에 있는 문자들을 처리
-    while(i != s.size()){
-        // 선행하는 공백들을 무시
-        // 불변성: [원래의 i, 현재의 i) 범위에 있는 문자들은 모두 공백
-        while(i != s.size() && isspace(s[i]))
-            ++i;
-        
-        //순서상 다음 단어의 끝을 찾음
-        string_size j = i;
+    while(i != str.end()){
+        // 선행 공백을 무시
+        // 첫번째 문자를 찾음
+        i = find_if(i, str.end(), not_space);
 
-        // 불변상: [원래의 j, 현재의 j) 범위에 있는 문자들은 공백이 아님.
-        while(j != s.size() && !isspace(s[j]))
-            j++;
+        // 다음 단어의 끝을 찾음
+        iter j = find_if(i, str.end(), space);
 
-        // 공백이 아닌 문자들을 찾았을 때
-        if(i != j){
-            // i에서부터 j-i 개의 문자들을 s 에 복사
-            ret.push_back(s.substr(i, j-i));
-            i = j;
-        }
+        // [i,j] 의 범위의 문자를 복사
+        if(i != str.end())
+            ret.push_back(string(i, j));
+
+        i = j;
     }
     return ret;
 }
