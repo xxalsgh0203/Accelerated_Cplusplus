@@ -12,7 +12,7 @@ int main(){
 
     vector <string> result = find_urls(s);
 
-    for(int i=0; i<result.size(); i++){
-        cout << result[i] << '\n';
+    for(vector<string>::const_iterator it=result.begin(); it!=result.end(); ++it){
+        cout << *it << '\n';
     }
 }
