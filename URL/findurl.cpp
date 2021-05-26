@@ -45,20 +45,21 @@ string::const_iterator url_beg(string::const_iterator b, string::const_iterator 
 
     // i는 구분 기호를 발견한 위치를 표시
     iter i = b;
-    while((i = search(i, e, sep.begin(), sep.end())) != e){
+    while((i = search(i, e, sep.begin(), sep.end())) != e){ // 찾고자 하는 순차열을 발견했을때 -> search 함수 호출이 끝나면 i는 함수에 전달된 문자열의 마지막 부분 가리키거나 :를 가리키고 있을것임
         // 구분 기호가 현재 탐색 범위의 처음 또는 마지막에 있는지 확인
         if(i != b && i + sep.size() != e){
             // beg 는 프로토콜 이름의 시작 위치를 표시
             iter beg = i;
-            while(beg != b && isalpha(beg[-1]))
-                --beg;
+            while(beg != b && isalpha(beg[-1])) // 컨테이너가 인덱스를 지원하면 반복자도 인덱스를 지원한다는 사실
+                --beg;  // 알파벳이 아닌 문자나 현재 탐색범위의 처음에 도달할때까지 반복자 beg를 거꾸로 이동
 
             // 구분 기호 앞뒤로 URL의 일부에서 유효한 문자가 하나라도 있는지 확인
             if(beg != i && !not_url_char(i[sep.size()]))
                 return beg;
         }
-        // 발견한 구분 기호는 URL 일부가 아니므로 해당 구분 기호 이후를 표시하도록 i를 증가시킴
+        // 발견한 구분 기호(구분 기호의 위치가 현재 탐색 범위의 처음 또는 마지막에 위치) 는 URL 일부가 아니므로 해당 구분 기호 이후를 표시하도록 i를 증가시킴
         i += sep.size();
     }
     return e;
 }
+
