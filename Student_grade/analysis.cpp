@@ -24,6 +24,6 @@ double average_analysis(const vector<Student_info>& students){
 }
 
 double optimistic_median_analysis(const vector<Student_info>& students){
-    
+
 }
 
