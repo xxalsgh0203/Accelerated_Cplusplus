@@ -9,6 +9,9 @@ double grade(double, double, double);
 double grade(double, double, const std::vector<double>&);
 double grade(const Student_info&);
 bool fgrade(const Student_info&);
+double grade_aux(const Student_info&);
+double average(const std::vector<double>&);
+double average_grade(const Student_info&);
 std::list <Student_info> extract_fails(std::list<Student_info>&);
 
 #endif

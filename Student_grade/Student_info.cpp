@@ -26,3 +26,7 @@ std::istream& read_hw(std::istream& in, std::vector<double>& hw){
     }
     return in;
 }
+
+bool did_all_hw(const Student_info& s){
+    return ((find(s.homework.begin(), s.homework.end(), 0)) == s.homework.end()); // find 함수의 반환값과 homework.end() 함수의 반환값을 비교하여 학생이 모든 과제를 제출했는지 확인
+}
