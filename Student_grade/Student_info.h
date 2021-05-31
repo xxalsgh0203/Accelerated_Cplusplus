@@ -5,10 +5,16 @@
 #include <string>
 #include <vector>
 
-struct Student_info{
-    std::string name;
-    double midterm, final;
-    std::vector<double> homework;
+class Student_info{
+    public:
+        // 인터페이스
+        std::istream& read(std::istream&);
+        double grade() const;
+    private:
+        // 구현
+        std::string name;
+        double midterm, final;
+        std::vector<double> homework;
 };
 
 bool compare(const Student_info&, const Student_info&);

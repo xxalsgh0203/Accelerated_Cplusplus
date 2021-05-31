@@ -5,9 +5,9 @@ using std::vector;
 
 // vector<double> 타입 객체의 중앙값을 구함
 // 이 함수를 호출하면 인수로 전달된 벡터 전체를 복사
-
-double median(vector<double> vec){
-    typedef vector<double>::size_type vec_sz;
+template <class T>
+T median(vector<T> vec){
+    typedef typename vector<T>::size_type vec_sz;
     vec_sz size = vec.size();
 
     if(size==0)
